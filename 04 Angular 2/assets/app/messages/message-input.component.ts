@@ -13,7 +13,7 @@ export class MessageInputComponent{
     constructor(private messageService: MessageService) { }
     onSubmit(form: NgForm){
         const message = new Message(form.value.content, 'Yunlong')
-        this.messageService.addMessage(message);
+         this.messageService.addMessage(message);
         form.resetForm(); //reset automaticaly
     }
 }
