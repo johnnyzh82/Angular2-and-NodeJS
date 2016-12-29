@@ -1,6 +1,6 @@
 import 'rxjs/Rx';
 import { Observable, Observer } from 'rxjs/Rx';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Message } from "./message.model";
 
@@ -10,7 +10,7 @@ import { Message } from "./message.model";
 @Injectable()
 export class MessageService {
     private messages: Message[] = [];
-
+    messageIsEdit = new EventEmitter<Message>();
     //inject http service
 	constructor(private http : Http) {}
 
@@ -38,6 +38,14 @@ export class MessageService {
                 return transformedMessages;
             })
             .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    editMessage(message: Message){
+        this.messageIsEdit.emit(message);
+    }
+
+    updateMessage(message: Message){
+            
     }
 
     deleteMessage(message: Message){
