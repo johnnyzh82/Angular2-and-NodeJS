@@ -6,23 +6,27 @@ import { MessageService } from "./message.service";
     selector: 'app-message',
     templateUrl: './message.component.html',
     styles: [`
-    .author{
-        display: inline-block;
-        font-style: italic;
-        font-size: 12px;
-        width: 80%;
-    }
-    .config{
-        display: inline-block;
-        text-align: right;
-        font-size: 12px;
-        width: 19%;
-    }
-`]
+        .author{
+            display: inline-block;
+            font-style: italic;
+            font-size: 12px;
+            width: 80%;
+        }
+        .config{
+            display: inline-block;
+            text-align: right;
+            font-size: 12px;
+            width: 19%;
+        }
+    `]
 })
 
 export class MessageComponent {
-    //@input() allows pass argument from outside
+    //@input() allows pass argument from outside, 
+    // for instance:
+    // <app-message    [message]="message"
+    //                 *ngFor="let message of messages">
+    // </app-message> 
     @Input() message: Message;    
     constructor(private messageService: MessageService){ }
 
@@ -31,6 +35,9 @@ export class MessageComponent {
     }
 
     onDelete(){
-        this.messageService.deleteMessage(this.message);
+        this.messageService.deleteMessage(this.message)
+            .subscribe(
+                result => console.log(result)
+            );
     }
 }
