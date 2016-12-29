@@ -21,6 +21,7 @@ export class MessageListComponent implements OnInit {
     ngOnInit(){
         //this creates a pointer reference to 
         //memory of message service message array 
-        this.messages = this.messageService.getMessage();
+        this.messageService.getMessage()
+            .subscribe((messages: Message[]) => { this.messages = messages; });
     }
 }
