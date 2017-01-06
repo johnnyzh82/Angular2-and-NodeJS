@@ -1,3 +1,4 @@
+import { AuthService }              from './auth/auth.service';
 import { HttpModule }               from '@angular/http';
 import { NgModule }                 from '@angular/core';
 import { BrowserModule }            from '@angular/platform-browser';
@@ -36,7 +37,8 @@ import { routing }                  from "./app.routing";
         routing, 
         ReactiveFormsModule,
         HttpModule 
-    ],  
+    ],
+    providers: [AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
