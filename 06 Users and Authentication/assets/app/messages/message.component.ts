@@ -1,4 +1,3 @@
-import { AuthService } from '../auth/auth.service';
 import { Component, Input, Output } from '@angular/core';
 import { Message } from "./message.model";
 import { MessageService } from "./message.service";
@@ -29,8 +28,7 @@ export class MessageComponent {
     //                 *ngFor="let message of messages">
     // </app-message> 
     @Input() message: Message;    
-    constructor(private messageService: MessageService,
-                private authService: AuthService){}
+    constructor(private messageService: MessageService){}
 
     onEdit() {
         this.messageService.editMessage(this.message);
@@ -43,7 +41,7 @@ export class MessageComponent {
             );
     }
 
-    isLoggedIn(){
-        return this.authService.isLoggedIn();
+    belongsToUser() {
+        return localStorage.getItem('userId') == this.message.userId;
     }
 }

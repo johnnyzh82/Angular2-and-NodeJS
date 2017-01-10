@@ -9,10 +9,11 @@ var schema = new Schema({
 });
 
 //Remove users messages references
-schema.post('remove', function(message){
-    User.findById(message.user, function(err, user){
+schema.post('remove', function (message) {
+    User.findById(message.user, function (err, user) {
         user.messages.pull(message);
         user.save();
     });
 });
+
 module.exports = mongoose.model('Message', schema);

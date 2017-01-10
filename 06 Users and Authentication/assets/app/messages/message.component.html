@@ -6,9 +6,9 @@
         <div class="author">
             {{ message.username }}
         </div>
-        <div class="config">
-            <a *ngIf="isLoggedIn()" (click)="onEdit()">Edit</a>
-            <a *ngIf="isLoggedIn()" (click)="onDelete()">Delete</a>
+        <div class="config" *ngIf="belongsToUser()">
+            <a (click)="onEdit()">Edit</a>
+            <a (click)="onDelete()">Delete</a>
         </div>
     </footer>
 </article>

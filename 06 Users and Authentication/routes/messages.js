@@ -7,8 +7,8 @@ var Message = require('../models/message');
 
 router.get('/', function(req, res, next){
     //using mongoose
+    //populate is a mongoose method that allows to expand retrived data
     Message.find()
-        //populate is a mongoose method that allows to expand retrived data
         .populate('user', 'firstName')
         .exec(function(err, messages){
             if(err){
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next){
             res.status(200).json({
                 message: 'Success',
                 obj: messages
-            })
+            });
         });
 })
 
@@ -49,7 +49,8 @@ router.post('/', function (req, res, next) {
             });
         }
         var message = new Message({
-            content: req.body.content
+            content: req.body.content,
+            user: user
         });
         message.save(function(err, result){
             if(err){
