@@ -30,9 +30,9 @@ router.use('/', function(req, res, next){
                 title: 'Not Authenticated',
                 error: err
             });
-            next();//do not send response yet.
         }
-    })
+        next();//do not send response yet.
+    });
 });
 
 router.post('/', function (req, res, next) {

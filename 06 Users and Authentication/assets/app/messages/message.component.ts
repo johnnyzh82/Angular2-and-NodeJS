@@ -1,3 +1,4 @@
+import { AuthService } from '../auth/auth.service';
 import { Component, Input, Output } from '@angular/core';
 import { Message } from "./message.model";
 import { MessageService } from "./message.service";
@@ -28,7 +29,8 @@ export class MessageComponent {
     //                 *ngFor="let message of messages">
     // </app-message> 
     @Input() message: Message;    
-    constructor(private messageService: MessageService){ }
+    constructor(private messageService: MessageService,
+                private authService: AuthService){}
 
     onEdit() {
         this.messageService.editMessage(this.message);
@@ -39,5 +41,9 @@ export class MessageComponent {
             .subscribe(
                 result => console.log(result)
             );
+    }
+
+    isLoggedIn(){
+        return this.authService.isLoggedIn();
     }
 }
