@@ -1,3 +1,4 @@
+import { ErrorComponent }           from './errors/error.component';
 import { AuthService }              from './auth/auth.service';
 import { HttpModule }               from '@angular/http';
 import { NgModule }                 from '@angular/core';
@@ -30,6 +31,7 @@ import { routing }                  from "./app.routing";
         SignupComponent,
         LogoutComponent,
         HeaderComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule, 
