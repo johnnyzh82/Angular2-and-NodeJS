@@ -8,6 +8,8 @@ var Message = require('../models/message');
 router.get('/', function(req, res, next){
     //using mongoose
     Message.find()
+        //populate is a mongoose method that allows to expand retrived data
+        .populate('user', 'firstName')
         .exec(function(err, messages){
             if(err){
                 return res.status(500).json({
