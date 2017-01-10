@@ -1,5 +1,6 @@
+import { ErrorService } from './error.service';
 import { AnimationStyles } from '@angular/core/src/animation/animation_styles';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'app-error',
     templateUrl: './error.component.html',
@@ -14,11 +15,23 @@ import { Component } from '@angular/core';
         }
     `]
 })
-export class ErrorComponent{
+export class ErrorComponent implements OnInit{
     error: Error;
     display = 'none';
 
+    constructor(private errorService: ErrorService){}
+
     onErrorHandled(){
         this.display = 'none';
+    }
+
+    ngOnInit(){
+        this.errorService.errorOccurred
+            .subscribe(
+                (error: Error) => {
+                    this.error = error;
+                    this.display = 'block';
+                }
+            )
     }
 }
