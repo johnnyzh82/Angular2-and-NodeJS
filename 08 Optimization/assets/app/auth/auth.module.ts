@@ -1,10 +1,10 @@
-import { StyleWithImports } from '@angular/compiler/src/style_url_resolver';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 import { LogoutComponent } from './logout.component';
 import { SignupComponent } from './signup.component';
 import { SigninComponent } from './signin.component';
-import { NgModule } from '@angular/core';
 import { authRouting } from './auth.routing';
 
 @NgModule({

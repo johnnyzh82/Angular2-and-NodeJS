@@ -1,5 +1,6 @@
 import { ErrorService } from './error.service';
-import { AnimationStyles } from '@angular/core/src/animation/animation_styles';
+
+import { Error } from "./error.model";
 import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'app-error',
