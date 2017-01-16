@@ -22,7 +22,7 @@ export var MessageService = (function () {
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         //this line only setup observable, not send request
         //need to subscribe the component        
-        return this.http.post('http://localhost:3000/message' + token, body, { headers: headers })
+        return this.http.post('http://angular2node-deployment.herokuapp.com/message' + token, body, { headers: headers })
             .map(function (response) {
             var result = response.json();
             var message = new Message(result.obj.content, result.obj.user.firstName, result.obj._id, result.obj.user._id);
@@ -37,7 +37,7 @@ export var MessageService = (function () {
     MessageService.prototype.getMessage = function () {
         var _this = this;
         //let ... of ... syntax is foreach loop in typescript
-        return this.http.get('http://localhost:3000/message')
+        return this.http.get('http://angular2node-deployment.herokuapp.com/message')
             .map(function (response) {
             var messages = response.json().obj;
             var transformedMessages = [];
@@ -62,7 +62,7 @@ export var MessageService = (function () {
         var body = JSON.stringify(message);
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, { headers: headers })
+        return this.http.patch('http://angular2node-deployment.herokuapp.com/message/' + message.messageId + token, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -73,7 +73,7 @@ export var MessageService = (function () {
         var _this = this;
         this.messages.splice(this.messages.indexOf(message), 1);
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
+        return this.http.delete('http://angular2node-deployment.herokuapp.com/message/' + message.messageId + token)
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
